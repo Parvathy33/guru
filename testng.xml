@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Guru99Bank Suite">
+
+    <listeners>
+        <listener class-name="guru99bank.listeners.ReportListeners"/>
+    </listeners>
+
+    <test name="All Tests">
+        <packages>
+            <package name="guru99bank.testcases"/>
+        </packages>
+    </test>
+
+</suite>

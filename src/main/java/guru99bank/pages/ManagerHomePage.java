@@ -1,5 +1,4 @@
 package guru99bank.pages;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,7 +31,12 @@ public class ManagerHomePage {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-
+	private void log(Status status, String message) {
+	    if (ReportListeners.test != null) {
+	        ReportListeners.test.log(status, message);
+	    }
+	}
+	
 	public boolean isWelcomeTextPresent() {
     	try {
 			ReportListeners.test.log(Status.PASS, "Welcome message displayed.");
