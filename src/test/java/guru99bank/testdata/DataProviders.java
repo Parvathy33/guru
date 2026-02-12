@@ -23,7 +23,7 @@ public class DataProviders {
 	@DataProvider(name = "AddNewAccount")
 	public Object[][] AddNewAccountTestData() {
 		return new Object[][] { 
-			{ "18565", "Savings", "1000" }, 
+			{ "21296", "Savings", "8000" }, 
 		};
 	}
 }

@@ -1,4 +1,9 @@
 package guru99bank.pages;
+import java.time.Duration;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -86,17 +91,21 @@ public class ManagerHomePage {
 	}
 
 	public LoginPage clickLogout() {
-    	try {
-			lnkLogout.click();
-			ReportListeners.test.log(Status.PASS, "Clicked on 'Logout' menu link.");
-			System.out.println("Clicked on 'Logout' menu link.");
-			return new LoginPage(driver);
-		} catch (Exception e) {
-			ReportListeners.test.log(Status.FAIL, "Error occured while clicking on the 'Logout' menu link. Exception occured : " + e);
-			System.out.println("Error occured while clicking on the 'Logout' menu link. Exception occured : " + e);
-			return null;
-		}
+
+	    // Guru99 footer overlaps logout link → JS click required
+	    JavascriptExecutor js = (JavascriptExecutor) driver;
+	    js.executeScript("arguments[0].click();", lnkLogout);
+
+	    if (ReportListeners.test != null) {
+	        ReportListeners.test.log(Status.PASS,
+	                "Clicked on Logout using JavaScript (footer overlap workaround).");
+	    }
+
+	    System.out.println("Clicked on Logout using JavaScript.");
+
+	    return new LoginPage(driver);
 	}
+
 
 	public AddCustomerPage clickAddCustomer() {
     	try {
